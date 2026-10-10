@@ -1,0 +1,27 @@
+# Python / environment
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets - NEVER commit
+.env
+*.env
+*.keystore
+*.jks
+signing-key-info.txt
+
+# Generated at runtime
+logs/audit_chain.jsonl
+models/sms_model.joblib
+
+# Builds and big files (put APK/AAB in GitHub Releases instead)
+*.apk
+*.aab
+node_modules/
+
+# Real personal data / test uploads
+uploads/
+private_samples/
+data/reported_numbers.json
+data/feedback.jsonl

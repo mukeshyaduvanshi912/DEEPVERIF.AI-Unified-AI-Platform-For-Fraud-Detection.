@@ -1,0 +1,41 @@
+text,label,style
+"This is CBI. A parcel in your name had drugs. You are under digital arrest. Do not disconnect the call and do not tell anyone. Transfer the money to the RBI safe account immediately.",scam,aggressive
+"Mumbai police cyber cell speaking. Your Aadhaar misuse case is registered. Arrest warrant is issued. Stay on video and send money to clear your name.",scam,aggressive
+"Aapka parcel customs me pakda gaya hai, drugs mile hain. Aap digital arrest me hain. Kisi ko mat batana aur video call on rakho. Abhi ke abhi paise transfer karo.",scam,aggressive_hinglish
+"आपके नाम पर मनी लॉन्ड्रिंग का केस है। आप गिरफ्तार होंगे। कॉल मत काटना और किसी को मत बताना। पैसे ट्रांसफर करो।",scam,aggressive_hindi
+"Sir namaste, main cyber crime branch se bol raha hoon. Aap bilkul chinta mat kijiye, main aapki madad karne ke liye hi hoon. Bas verification ke liye safe account me paise bhej dijiye, baad me wapas mil jayenge. Abhi kisi ko batane ki zarurat nahi.",scam,polite_hinglish
+"Good afternoon sir, I am an officer from the Enforcement Directorate. Please do not worry, I only want to help you. Kindly transfer the amount to the RBI account for verification, it will be refunded. Please keep this matter between us.",scam,polite_english
+"Respected madam, there is a small issue with your SIM card, TRAI has registered a case. For your own safety, please stay on the call and deposit a small security deposit. Trust me, this is just a formality.",scam,polite_english
+"Beta aap ghabrao mat, main police inspector hoon aur aapko bachane ke liye call kiya hai. Case close ho jayega bas bail amount bhej do. Ghar walon ko pareshan mat karna, kisi ko mat batana.",scam,polite_hinglish
+"Hello sir, I am calling from the narcotics bureau. A FedEx parcel with your Aadhaar has illegal items. I understand this is stressful, but please cooperate, stay on video and send the settlement amount today.",scam,polite_english
+"Ji sir, TRAI ki taraf se bol rahe hain, aapka number band hone wala hai. Aap please pareshan na hon, hum aapka kaam kar denge. Bas ek chhota sa verification amount transfer kar dijiye aur call cut mat kijiye.",scam,polite_hinglish
+"Sir, I'm from the customs department. Your parcel is held. This is confidential, please do not inform anyone, and pay the fine through this link right now.",scam,mixed
+"We are from Supreme Court registry. Your name is in a hawala case. Under national security you cannot speak to anyone. Pay the bail amount now or we will arrest you.",scam,aggressive
+"Main CBI officer bol raha hoon. Aapke khilaf FIR registered hai. Warrant nikal gaya hai. Turant paisa transfer karo warna arrest.",scam,aggressive_hinglish
+"Hello, this is the bank's fraud team. We noticed a problem in your account. To protect you, please move your money to this safe account right away and do not tell anyone, even family, until we confirm.",scam,polite_english
+"Sir aapki madad karna chahta hoon. Police case me aapka naam aa gaya hai, par main yeh case khatam kar sakta hoon. Aap safe account me paise daal dijiye, kisi ko batane ki zarurat nahi hai.",scam,polite_hinglish
+"Hi mom, I will be late today. Please keep dinner for me. Call me if you need anything.",benign,casual
+"Hello sir, this is your bank customer care. Your debit card request is processed, it will be delivered in 5 working days. Is there anything else I can help with?",benign,bank_support
+"Dear customer, your electricity bill is due on the 15th. You can pay it in the official app or at the counter. Thank you.",benign,utility
+"Hey, the police came to our colony today for a routine patrol. Nothing serious, everyone is fine.",benign,mentions_police
+"Did you watch the news? They said digital arrest scams are increasing, and police says never transfer money to anyone on a video call.",benign,awareness_talk
+"Bhai kal mera exam hai, notes bhej dena. Aur haan paise kal de dunga, chai ke.",benign,hinglish_casual
+"Papa, main abhi bank ja raha hoon rent transfer karne. Landlord ka account number message kar do.",benign,hinglish_money
+"Hello sir, I am calling from the courier company. Your parcel will arrive tomorrow between 10 and 12. Please keep your phone reachable.",benign,courier
+"Meeting rescheduled to 4 pm. Please join the video call with the client and keep your camera on.",benign,keep_camera_on
+"Aapka loan EMI is month ki 5 tareekh ko deduct hogi, bank statement me check kar lena.",benign,hinglish_bank
+"Hi, this is your teacher. Please submit the project report by Monday. Do not worry, there is still time.",benign,reassurance
+"Sir, your insurance premium is due next week. You can pay through the official website or visit our branch. No urgency.",benign,insurance
+"Our company is paying the security deposit for the new office lease today. The accounts team will transfer it from the company account.",benign,mentions_deposit
+"Maine apni FIR ki copy collect kar li hai, kal police station se aayi. Ab insurance claim file karunga.",benign,own_fir
+"Don't tell anyone about the surprise party, it's a secret for her birthday.",benign,secret_party
+"Sir, aapke account se kuch galat transaction hue hain. Main aapki madad ke liye hoon. Aap apna paisa hamare secure khate me daal dijiye, jaanch ke baad lauta denge. Is baare me abhi dusron se baat mat kijiye.",scam,polite_novel_words
+"Madam, I am from the verification wing. Your documents show a mismatch. To protect your savings, please shift the funds to the government holding account today. Let us keep this discreet for your own safety.",scam,polite_novel_words
+"Aapki madad karna chahta hoon. Ek chhoti si problem hai aapke number me. Please paise hamare nodal account me bhej dijiye, kal tak sab theek ho jayega. Yeh baat apne tak hi rakhiye.",scam,polite_novel_words
+"Hello sir, calling from the cyber department. Everything is under control, no need to panic. Just send the refundable amount for clearance and stay connected on video until I confirm.",scam,polite_novel_words
+"Beta tension mat lo, hum tumhari help karenge. Sirf ek chhota amount bhej do, case apne aap khatam. Mummy papa ko abhi mat bolna.",scam,polite_novel_words
+"Our school teacher said that bank officers never ask for a safe account transfer. If a stranger on a video call asks you to keep it secret, hang up.",benign,awareness_to_you
+"Aaj ki news me aaya ki digital arrest fraud bahut badh gaye hain. Police ne kaha koi bhi video call pe paisa transfer na kare.",benign,awareness_hinglish
+"Sir, your relative has requested a bank transfer of the school fees. Please confirm the amount with them and use the official fee portal.",benign,fees
+"नमस्ते, मैं एटीएस पुणे से अभिषेक यादव बोल रहा हूँ। आपका नंबर आतंकवादी गतिविधियों में पाया गया है और आपके खिलाफ मनी लॉन्ड्रिंग का केस है। एनआईए की जांच चल रही है, सुप्रीम कोर्ट का अरेस्ट वारंट निकला है। आप डिजिटल अरेस्ट में हैं, वीडियो कॉल मत काटना और किसी को मत बताना। अपनी एफडी तोड़कर पैसे ट्रांसफर करो, जांच के बाद वापस मिल जाएंगे।",scam,case_study_hindi
+"Main ATS Pune se Abhishek Yadav bol raha hoon. Aapka number aatankwadi gatividhiyon me paya gaya hai aur money laundering ka case hai. NIA investigation chal rahi hai, Supreme Court ka arrest warrant nikla hai. Aap digital arrest me hain, video call mat kaatna, kisi ko mat batana. Apni FD tod kar paise transfer karo, jaanch ke baad wapas mil jayenge.",scam,case_study_romanized_hindi

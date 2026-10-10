@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/static/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+<title>DeepVerif.AI | Unified AI Platform for Fraud Detection</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div id="alertBar" class="alert-bar" style="display:none;" role="alert"></div>
+<header class="topbar">
+  <h1>🛡️ DeepVerif.AI</h1>
+  <p>Unified AI Platform for Fraud Detection</p>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="shield">🛡️ Digital Arrest Shield (Live Call)</button>
+  <button class="tab-btn" data-tab="help">🚨 Help &amp; Report (1930)</button>
+  <button class="tab-btn" data-tab="liveness">Digital Arrest / Deepfake Detector</button>
+  <button class="tab-btn" data-tab="document">Fake ID Document Detector</button>
+  <button class="tab-btn" data-tab="sms">SMS Phishing Detector</button>
+  <button class="tab-btn" data-tab="upi">💳 QR / UPI Check</button>
+  <button class="tab-btn" data-tab="exposure">🔐 Data Exposure</button>
+  <button class="tab-btn" data-tab="dashboard">📊 Dashboard</button>
+  <button class="tab-btn" data-tab="logs">Audit Log (Hash-Chain)</button>
+</nav>
+
+<main>
+  <!-- ============ LIVENESS / DEEPFAKE ============ -->
+  <section id="liveness" class="tab-panel">
+    <h2>Live Face Liveness Check (rPPG Pulse Detection)</h2>
+    <p class="hint">Real human skin shows a tiny periodic colour change from your heartbeat's blood flow.
+       A photo, screen replay, or deepfake usually cannot reproduce this. Sit still and well-lit, then Start.</p>
+    <div class="mode-box">
+      <label><input type="radio" name="liveMode" value="camera" checked> 🙋 My own face (self-check, camera)</label>
+      <label><input type="radio" name="liveMode" value="screen" id="modeScreen"> 📺 The other person's video (screen share)</label>
+      <div id="screenOpts" style="display:none;">
+        <label>Where is the caller on the screen?
+          <select id="screenRegion">
+            <option value="full">Whole screen</option>
+            <option value="center">Centre part</option>
+            <option value="left">Left half</option>
+            <option value="right">Right half</option>
+          </select></label>
+        <p class="hint">On laptop Chrome, press "Start" and choose the video-call window or tab. Enlarge the caller's tile and hide your own self-view.
+           Call video is already compressed, so "no pulse found" is only weak evidence.</p>
+      </div>
+      <p class="hint" id="screenUnsupported" style="display:none;">Screen share is not supported on this device/browser (it does not work on Android Chrome). Please use Chrome on a laptop.</p>
+    </div>
+    <div class="row">
+      <video id="webcam" autoplay muted playsinline></video>
+      <div class="result-box" id="livenessResult">
+        <p class="placeholder">No test run yet.</p>
+      </div>
+    </div>
+    <button id="startLiveness" class="btn">▶ Start 6-second Liveness Scan</button>
+    <div class="progress" id="livenessProgress" style="display:none;">
+      <div class="bar" id="livenessBar"></div>
+    </div>
+  </section>
+
+  <!-- ============ DIGITAL ARREST SHIELD ============ -->
+  <section id="shield" class="tab-panel active">
+    <h2>Digital Arrest Shield — Live Call Protection</h2>
+    <p class="hint">Stops the scam <b>before money is sent</b>. It listens to what the caller says (live mic),
+       spots the digital-arrest script, guards the payment, and alerts your family.
+       The rPPG tab catches fake faces; this tab catches a REAL person running the scam.</p>
+
+    <div id="shieldBanner" class="shield-banner" style="display:none;"></div>
+
+    <h3>1. Live scam-script detector</h3>
+    <div class="row-inline">
+      <select id="speechLang">
+        <option value="en-IN">English (India)</option>
+        <option value="hi-IN">Hindi (India)</option>
+      </select>
+      <button id="micBtn" class="btn">🎤 Start Listening</button>
+      <button id="scamSample" class="sample-btn">Try scam-call sample</button>
+      <button id="caseStudySample" class="sample-btn">Digital arrest case study (Hindi)</button>
+      <button id="politeSample" class="sample-btn">Try polite-scammer sample</button>
+      <button id="safeSample" class="sample-btn">Try normal-call sample</button>
+      <button id="clearTranscript" class="sample-btn">Clear</button>
+    </div>
+    <p class="hint" id="micSupport"></p>
+    <textarea id="transcript" rows="5" placeholder="Live transcript appears here (or type / paste call text to test)..."></textarea>
+    <div class="result-box" id="shieldResult"><p class="placeholder">Waiting for call audio / text...</p></div>
+
+    <h3>2. Payment guard</h3>
+    <div class="form-grid">
+      <label>Amount (Rs.) <input type="number" id="payAmount" value="250000"></label>
+      <label>Your usual max transfer (Rs.) <input type="number" id="payTypical" value="10000"></label>
+      <label>Call running (minutes) <input type="number" id="payMinutes" value="45"></label>
+      <label><input type="checkbox" id="payNew" checked> New beneficiary</label>
+      <label><input type="checkbox" id="payCall" checked> Currently on a video/phone call</label>
+    </div>
+    <button id="payCheck" class="btn">Check this transfer</button>
+    <div class="result-box" id="payResult"><p class="placeholder">No transfer checked yet.</p></div>
+
+    <h3>3. Family alert</h3>
+    <div class="form-grid">
+      <label>Trusted contact name <input type="text" id="famName" placeholder="Papa"></label>
+      <label>Their WhatsApp number <input type="text" id="famPhone" placeholder="9876543210"></label>
+    </div>
+    <button id="famAlert" class="btn">Create family alert</button>
+    <div class="result-box" id="famResult"><p class="placeholder">No alert created yet.</p></div>
+
+    <h3>4. Incident report</h3>
+    <p class="hint">Create a local report you can save/share when reporting the incident. The raw transcript is not written to the server audit log.</p>
+    <div class="form-grid">
+      <label>Your name <input type="text" id="reportUser" placeholder="Your name"></label>
+      <label>Caller number (if known) <input type="text" id="reportCaller" placeholder="+91..." inputmode="tel"></label>
+      <label>Incident notes <input type="text" id="reportNotes" placeholder="What happened?"></label>
+      <label><input type="checkbox" id="reportTranscript" checked> Include transcript in saved report</label>
+    </div>
+    <div class="quick-actions">
+      <button id="saveIncidentReport" class="btn">📄 Save Incident Report</button>
+      <button id="shareIncidentReport" class="btn secondary-btn">📤 Share Report</button>
+      <a class="btn danger-btn" href="tel:1930">📞 1930 Cyber Helpline</a>
+      <a class="btn secondary-btn" href="https://cybercrime.gov.in/" target="_blank" rel="noopener">🌐 Cybercrime Portal</a>
+    </div>
+    <div class="result-box" id="reportResult"><p class="placeholder">No report created yet.</p></div>
+  </section>
+
+  <!-- ============ DOCUMENT ============ -->
+  <section id="document" class="tab-panel">
+    <h2>Fake / Tampered ID Document Detector (Error Level Analysis)</h2>
+    <p class="hint">Upload an ID document as an <b>image (JPG/PNG) or a PDF</b> (Aadhaar/PAN/marksheet sample).
+       The system highlights regions with inconsistent compression history — a common sign of digital
+       tampering or AI-editing — and fingerprints the file's metadata to make a best-effort guess at
+       <b>which tool/source the fake was likely produced with</b>.</p>
+    <div class="row">
+      <div class="upload-box">
+        <input type="file" id="docInput" accept="image/*,application/pdf">
+        <img id="docPreview" style="display:none;max-width:100%;margin-top:10px;">
+        <p id="docFileLabel" class="hint" style="display:none;"></p>
+      </div>
+      <div class="result-box" id="docResult">
+        <p class="placeholder">No document analyzed yet.</p>
+      </div>
+    </div>
+    <button id="analyzeDoc" class="btn">🔍 Analyze Document</button>
+    <button id="downloadDocReport" class="btn" style="display:none;">⬇️ Download Full Report</button>
+  </section>
+
+  <!-- ============ SMS ============ -->
+  <section id="sms" class="tab-panel">
+    <h2>SMS Phishing (Smishing) Detector</h2>
+    <p class="hint">Paste any SMS text (real or suspicious) below and test it live. If it contains a link,
+       the link's full history (redirect chain, destination domain, domain age) is checked too, and the
+       claimed sender is cross-checked against where the link actually goes.</p>
+    <textarea id="smsInput" rows="4" placeholder="e.g. Your account will be BLOCKED in 24 hrs. Update KYC now: bit.ly/xyz"></textarea>
+    <div class="quick-samples">
+      <button class="sample-btn" data-text="Your a/c will be BLOCKED in 24 hrs. Update your KYC immediately: bit.ly/kyc-updt -SBI">Try Fake Sample</button>
+      <button class="sample-btn" data-text="Your OTP for login is 482910. Do not share this with anyone. -YourBank">Try Genuine Sample</button>
+    </div>
+    <button id="analyzeSms" class="btn">🔍 Analyze SMS</button>
+    <button id="downloadSmsReport" class="btn" style="display:none;">⬇️ Download Full Report</button>
+    <div class="result-box" id="smsResult">
+      <p class="placeholder">No SMS analyzed yet.</p>
+    </div>
+  </section>
+
+  <!-- ============ DATA EXPOSURE ============ -->
+  <section id="exposure" class="tab-panel">
+    <h2>Data Exposure — "How did the scammer get my data?"</h2>
+    <p class="hint" id="exposureNote">Loading...</p>
+    <h3>1. Check a password (private)</h3>
+    <p class="hint">Your password is hashed <b>inside your browser</b>; only the first 5 characters of the hash are sent to the
+       Have I Been Pwned range API (k-anonymity). Our server never sees it. Use a password you want to test, not one you are afraid to type.</p>
+    <div class="row-inline">
+      <input type="password" id="pwdInput" placeholder="Password to check" autocomplete="off">
+      <button id="pwdCheck" class="btn">Check password</button>
+    </div>
+    <div class="result-box" id="pwdResult"><p class="placeholder">Not checked yet.</p></div>
+    <h3>2. Check an e-mail (optional)</h3>
+    <div class="row-inline">
+      <input type="email" id="mailInput" placeholder="you@example.com">
+      <button id="mailCheck" class="btn">Check e-mail</button>
+    </div>
+    <div class="result-box" id="mailResult"><p class="placeholder">Not checked yet.</p></div>
+    <h3>3. Common leak routes</h3>
+    <ul class="flag-list" id="leakRoutes"></ul>
+    <h3>4. What to do now</h3>
+    <ol id="protectSteps"></ol>
+  </section>
+
+  <!-- ============ QR / UPI CHECK ============ -->
+  <section id="upi" class="tab-panel">
+    <h2>💳 QR / UPI Check</h2>
+    <p class="hint"><b>Remember:</b> scanning a QR code never <u>gets you money</u>; it takes money out. If someone says "scan this QR and you will receive money", it is a scam.
+       Upload a QR photo or paste a UPI link here, and the app will tell you where the money will go.</p>
+    <label class="btn" for="qrFile">📷 Take / choose a QR photo</label>
+    <input type="file" id="qrFile" accept="image/*" capture="environment" style="display:none;">
+    <p class="hint">or paste a UPI link:</p>
+    <textarea id="upiInput" rows="2" placeholder="upi://pay?pa=name@bank&amp;pn=Name&amp;am=500"></textarea>
+    <label class="hint"><input type="checkbox" id="upiExpect"> I was told I will <b>RECEIVE</b> money from this</label><br>
+    <button id="upiCheck" class="btn">🔍 Check</button>
+    <div class="result-box" id="upiResult"><p class="placeholder">No QR / link checked yet.</p></div>
+  </section>
+
+  <!-- ============ DASHBOARD ============ -->
+  <section id="dashboard" class="tab-panel">
+    <h2>📊 Dashboard</h2>
+    <button id="dashRefresh" class="btn">🔄 Refresh (real data)</button>
+    <button id="dashDemo" class="btn secondary-btn">🎬 Show demo (sample) data</button>
+    <div id="dashBody"><p class="placeholder">Press Refresh.</p></div>
+  </section>
+
+  <!-- ============ HELP & REPORT ============ -->
+  <section id="help" class="tab-panel">
+    <h2>🚨 Already scammed, or about to be? Get help here</h2>
+    <div class="help-actions">
+      <a class="btn danger-btn" href="tel:1930">📞 Call 1930 (Cyber Helpline)</a>
+      <a class="btn secondary-btn" href="https://cybercrime.gov.in" target="_blank" rel="noopener">🌐 cybercrime.gov.in complaint portal</a>
+      <a class="btn secondary-btn" href="https://sancharsaathi.gov.in" target="_blank" rel="noopener">📵 Sanchar Saathi (fraud call/SMS report)</a>
+    </div>
+    <p class="hint"><b>Lost money?</b> Call 1930 immediately (the sooner, the better the chance of getting it back), then call your bank to block your account/card.
+       Do not delete chats, screenshots or transaction IDs.</p>
+
+    <h3>🔔 Alerts</h3>
+    <p class="hint">When an SMS or call looks like a scam, the app shows an alert on screen and, if you allow it, also sends a phone notification
+       (with the reasons). This works while the app is open or was used recently.</p>
+    <button id="enableAlerts" class="btn">🔔 Allow notifications</button>
+    <span class="hint" id="alertStatus"></span>
+
+    <h3>📋 Check a message (easiest)</h3>
+    <p class="hint">Copy the suspicious SMS/WhatsApp message, then tap here. Or long-press the message &rarr; Share &rarr; DeepVerif.</p>
+    <button id="pasteCheck" class="btn">📋 Check copied message</button>
+    <span class="hint" id="pasteStatus"></span>
+
+    <h3>📞 Check a number</h3>
+    <div class="row-inline">
+      <input type="text" id="numInput" placeholder="+91 98xxxxxxxx" inputmode="tel">
+      <button id="numCheck" class="btn">Check number</button>
+    </div>
+    <div class="result-box" id="numResult"><p class="placeholder">No number checked yet.</p></div>
+    <div class="row-inline" id="numReportRow" style="display:none;">
+      <select id="numCategory">
+        <option value="digital_arrest">Digital arrest / police-CBI</option>
+        <option value="kyc_bank">Bank / KYC</option>
+        <option value="courier_parcel">Courier / parcel</option>
+        <option value="investment_job">Investment / job / task</option>
+        <option value="other">Other</option>
+      </select>
+      <button id="numReport" class="btn secondary-btn">🚩 Report this as a scam number</button>
+    </div>
+    <p class="hint">Note: "LOW" does not mean safe. Scammers also use Indian SIMs.</p>
+
+    <h3>📄 Evidence</h3>
+    <button id="goIncident" class="btn secondary-btn">Create incident report (Shield tab)</button>
+    <button id="goLogs" class="btn secondary-btn">View audit log</button>
+
+    <h3>🧠 How to recognise common scams</h3>
+    <div class="scam-cards">
+      <div class="scam-card"><b>Digital Arrest</b><p>"I am from the CBI/police, you are under digital arrest, don't tell anyone, don't cut the call." A real agency never arrests you or asks for money on a video call. Hang up and call 1930.</p></div>
+      <div class="scam-card"><b>Bank / KYC</b><p>"Your account will be blocked, update KYC now" + a link. Banks do not do KYC through SMS links. Verify only through the bank's official app or branch.</p></div>
+      <div class="scam-card"><b>Courier / Parcel</b><p>"Drugs were found in your parcel." First check yourself through the courier's official site/number. Do not send money out of fear.</p></div>
+      <div class="scam-card"><b>UPI / Refund</b><p>"Enter your PIN for a refund, or approve a collect request." You never need to enter a UPI PIN to <i>receive</i> money.</p></div>
+      <div class="scam-card"><b>Job / Investment / Task</b><p>"Earn from home, pay a small deposit first." If they ask for money first, it is a scam.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ LOGS ============ -->
+  <section id="logs" class="tab-panel">
+    <h2>Tamper-Evident Audit Log</h2>
+    <p class="hint">Every detection event is written to a SHA-256 hash chain. If any past record is altered,
+       chain verification will fail — useful as evidence for reporting to authorities.</p>
+    <button id="refreshLogs" class="btn">🔄 Refresh + Verify Chain</button>
+    <div id="chainStatus" class="chain-status"></div>
+    <div id="logList"></div>
+  </section>
+</main>
+
+<div id="scamModal" class="modal" style="display:none;">
+  <div class="modal-card">
+    <h2>⚠️ DIGITAL ARREST SCAM ALERT</h2>
+    <p id="modalAwareness"></p>
+    <ol id="modalSteps"></ol>
+    <button id="modalClose" class="btn">Got it</button>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+<script>
+  if ("serviceWorker" in navigator) { window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {})); }
+</script>
+</body>
+</html>
